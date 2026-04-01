@@ -28,6 +28,9 @@
 			ort.env.wasm.wasmPaths = `${base}/onnx/`;
 			ort.env.wasm.numThreads = 1;
 			const response = await fetch(`${base}/model/digit_classifier.onnx`);
+			if (!response.ok) {
+				throw new Error(`Failed to fetch ONNX model: ${response.status} ${response.statusText}`);
+			}
 			const modelBuffer = await response.arrayBuffer();
 			session = await ort.InferenceSession.create(modelBuffer, {
 				executionProviders: ['wasm']
