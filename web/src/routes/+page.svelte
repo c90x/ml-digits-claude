@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { base } from '$app/paths';
 	import * as ort from 'onnxruntime-web';
 
 	let canvas: HTMLCanvasElement;
@@ -24,8 +25,8 @@
 		ctx.lineWidth = LINE_WIDTH;
 
 		try {
-			ort.env.wasm.wasmPaths = '/onnx/';
-			session = await ort.InferenceSession.create('/model/digit_classifier.onnx');
+			ort.env.wasm.wasmPaths = `${base}/onnx/`;
+			session = await ort.InferenceSession.create(`${base}/model/digit_classifier.onnx`);
 			modelLoaded = true;
 		} catch (e) {
 			console.error('Failed to load model:', e);
