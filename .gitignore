@@ -10,6 +10,8 @@ model/data/
 node_modules/
 web/build/
 web/.svelte-kit/
+web/test-results/
+web/playwright-report/
 
 # ONNX WASM (large files, downloaded via npm install)
 web/static/onnx/

@@ -6,12 +6,15 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:setup": "mkdir -p static/onnx && cp node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded*.wasm static/onnx/ && cp node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded*.mjs static/onnx/ && npm run build",
+    "test": "npm run test:setup && playwright test"
   },
   "dependencies": {
     "onnxruntime-web": "^1.24.3"
   },
   "devDependencies": {
+    "@playwright/test": "^1.59.0",
     "@sveltejs/adapter-static": "^3.0.10",
     "@sveltejs/kit": "^2.55.0",
     "@sveltejs/vite-plugin-svelte": "^7.0.0",
