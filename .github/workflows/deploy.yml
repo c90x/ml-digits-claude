@@ -30,11 +30,12 @@ jobs:
         working-directory: web
         run: npm ci
 
-      - name: Copy ONNX WASM files to static
+      - name: Copy ONNX Runtime files to static
         working-directory: web
         run: |
           mkdir -p static/onnx
-          cp node_modules/onnxruntime-web/dist/*.wasm static/onnx/
+          cp node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded*.wasm static/onnx/
+          cp node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded*.mjs static/onnx/
 
       - name: Build
         working-directory: web
