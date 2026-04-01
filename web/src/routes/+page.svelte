@@ -26,7 +26,12 @@
 
 		try {
 			ort.env.wasm.wasmPaths = `${base}/onnx/`;
-			session = await ort.InferenceSession.create(`${base}/model/digit_classifier.onnx`);
+			ort.env.wasm.numThreads = 1;
+			const response = await fetch(`${base}/model/digit_classifier.onnx`);
+			const modelBuffer = await response.arrayBuffer();
+			session = await ort.InferenceSession.create(modelBuffer, {
+				executionProviders: ['wasm']
+			});
 			modelLoaded = true;
 		} catch (e) {
 			console.error('Failed to load model:', e);
