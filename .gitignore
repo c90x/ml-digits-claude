@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+*.pth
+model/data/
+
+# Node
+node_modules/
+web/build/
+web/.svelte-kit/
+
+# ONNX WASM (large files, downloaded via npm install)
+web/static/onnx/
+
+# OS
+.DS_Store
+*.swp
